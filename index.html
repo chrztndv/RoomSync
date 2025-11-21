@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RoomSync</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: 'rgb(var(--color-primary-50) / <alpha-value>)',
+                100: 'rgb(var(--color-primary-100) / <alpha-value>)',
+                200: 'rgb(var(--color-primary-200) / <alpha-value>)',
+                300: 'rgb(var(--color-primary-300) / <alpha-value>)',
+                400: 'rgb(var(--color-primary-400) / <alpha-value>)',
+                500: 'rgb(var(--color-primary-500) / <alpha-value>)',
+                600: 'rgb(var(--color-primary-600) / <alpha-value>)',
+                700: 'rgb(var(--color-primary-700) / <alpha-value>)',
+                800: 'rgb(var(--color-primary-800) / <alpha-value>)',
+                900: 'rgb(var(--color-primary-900) / <alpha-value>)',
+              }
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.5s ease-out',
+              'fade-in-up': 'fadeInUp 0.5s ease-out',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar { width: 8px; height: 8px; }
+      ::-webkit-scrollbar-track { background: #f1f1f1; }
+      .dark ::-webkit-scrollbar-track { background: #1e293b; }
+      ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+      .dark ::-webkit-scrollbar-thumb { background: #475569; }
+      ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+      :root, body.theme-default {
+        /* Default Blue */
+        --color-primary-50: 239 246 255;
+        --color-primary-100: 219 234 254;
+        --color-primary-200: 191 219 254;
+        --color-primary-300: 147 197 253;
+        --color-primary-400: 96 165 250;
+        --color-primary-500: 59 130 246;
+        --color-primary-600: 37 99 235;
+        --color-primary-700: 29 78 216;
+        --color-primary-800: 30 64 175;
+        --color-primary-900: 30 58 138;
+      }
+
+      body.theme-teal {
+        /* Teal */
+        --color-primary-50: 240 253 250;
+        --color-primary-100: 204 251 241;
+        --color-primary-200: 153 246 228;
+        --color-primary-300: 94 234 212;
+        --color-primary-400: 45 212 191;
+        --color-primary-500: 20 184 166;
+        --color-primary-600: 13 148 136;
+        --color-primary-700: 15 118 110;
+        --color-primary-800: 17 94 89;
+        --color-primary-900: 19 78 74;
+      }
+
+      body.theme-violet {
+        /* Violet */
+        --color-primary-50: 245 243 255;
+        --color-primary-100: 237 233 254;
+        --color-primary-200: 221 214 254;
+        --color-primary-300: 196 181 253;
+        --color-primary-400: 167 139 250;
+        --color-primary-500: 139 92 246;
+        --color-primary-600: 124 58 237;
+        --color-primary-700: 109 40 217;
+        --color-primary-800: 91 33 182;
+        --color-primary-900: 76 29 149;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6",
+    "recharts": "https://aistudiocdn.com/recharts@^3.4.1"
+  }
+}
+</script>
+</head>
+  <body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 antialiased transition-colors duration-300">
+    <div id="root"></div>
+  </body>
+</html>

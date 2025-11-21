@@ -1,0 +1,5 @@
+{
+  "name": "RoomSync",
+  "description": "A smart classroom reservation and scheduling application that provides real-time transparency for students and powerful management tools for administrators.",
+  "requestFramePermissions": []
+}
