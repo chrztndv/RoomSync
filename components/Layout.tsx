@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Calendar, Settings, LayoutDashboard, LogOut, ShieldCheck, GraduationCap, CheckCircle, Clock, Palette, Moon, Sun } from 'lucide-react';
+import { Calendar, Settings, LayoutDashboard, LogOut, ShieldCheck, GraduationCap, CheckCircle, Clock, Palette, Moon, Sun, CalendarPlus, UserCheck, Menu, X } from 'lucide-react';
 import { UserRole, ThemeColor } from '../types';
 
 interface LayoutProps {
@@ -15,6 +15,12 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children, role, onLogout, currentTheme, onThemeChange, darkMode, onToggleDarkMode }) => {
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location]);
 
   const navItems = [
     { path: '/', label: 'Dashboard', icon: LayoutDashboard },
@@ -27,16 +33,66 @@ export const Layout: React.FC<LayoutProps> = ({ children, role, onLogout, curren
     navItems.push({ path: '/admin', label: 'Admin Panel', icon: Settings });
   }
 
+  if (role === UserRole.TEACHER) {
+    navItems.push({ path: '/book', label: 'Book Room', icon: CalendarPlus });
+  }
+
   const themes: { id: ThemeColor; color: string; label: string }[] = [
     { id: 'default', color: 'bg-blue-500', label: 'Default' },
     { id: 'teal', color: 'bg-teal-500', label: 'Teal' },
     { id: 'violet', color: 'bg-violet-500', label: 'Violet' },
   ];
 
+  const getRoleLabel = () => {
+    switch(role) {
+      case UserRole.ADMIN: return 'Admin Access';
+      case UserRole.TEACHER: return 'Teacher Portal';
+      case UserRole.STUDENT: return 'Student View';
+      default: return 'Guest';
+    }
+  };
+
+  const getRoleIcon = () => {
+    switch(role) {
+      case UserRole.ADMIN: return <ShieldCheck size={16} className="text-indigo-600 dark:text-indigo-400" />;
+      case UserRole.TEACHER: return <UserCheck size={16} className="text-purple-600 dark:text-purple-400" />;
+      case UserRole.STUDENT: return <GraduationCap size={16} className="text-green-600 dark:text-green-400" />;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col md:flex-row transition-colors duration-300">
+      
+      {/* Mobile Header */}
+      <div className="md:hidden bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 p-4 sticky top-0 z-30 flex justify-between items-center transition-colors">
+        <div className="flex items-center space-x-2">
+            <div className="bg-primary-600 p-1.5 rounded-lg transition-colors">
+              <Calendar className="text-white" size={20} />
+            </div>
+            <span className="font-bold text-slate-900 dark:text-white text-lg tracking-tight">RoomSync</span>
+        </div>
+        <button 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 md:hidden backdrop-blur-sm animate-fade-in"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="bg-white dark:bg-slate-800 w-full md:w-64 border-r border-slate-200 dark:border-slate-700 flex flex-col sticky top-0 h-auto md:h-screen z-20 transition-colors duration-300">
+      <aside className={`
+        fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col transition-transform duration-300 ease-in-out
+        md:translate-x-0 md:static md:h-screen md:sticky md:top-0
+        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
         <div className="p-6 flex items-center space-x-3 border-b border-slate-100 dark:border-slate-700">
           <div className="bg-primary-600 p-2 rounded-lg transition-colors duration-300">
             <Calendar className="text-white" size={24} />
@@ -98,13 +154,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, role, onLogout, curren
 
           <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
              <div className="flex items-center space-x-2">
-                {role === UserRole.ADMIN ? (
-                    <ShieldCheck size={16} className="text-indigo-600 dark:text-indigo-400" />
-                ) : (
-                    <GraduationCap size={16} className="text-green-600 dark:text-green-400" />
-                )}
+                {getRoleIcon()}
                 <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                    {role === UserRole.ADMIN ? 'Admin Access' : 'Student View'}
+                    {getRoleLabel()}
                 </span>
              </div>
           </div>
@@ -119,8 +171,8 @@ export const Layout: React.FC<LayoutProps> = ({ children, role, onLogout, curren
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-x-hidden">
-        <div className="p-4 md:p-8 max-w-7xl mx-auto">
+      <main className="flex-1 overflow-x-hidden w-full">
+        <div className="p-4 md:p-8 max-w-7xl mx-auto pb-24 md:pb-8">
            {children}
         </div>
       </main>

@@ -75,9 +75,9 @@ export const AIChat: React.FC<AIChatProps> = ({ rooms, schedule }) => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end">
+    <div className="fixed bottom-4 right-4 z-40 flex flex-col items-end">
       {isOpen && (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-80 sm:w-96 h-[500px] mb-4 flex flex-col overflow-hidden border border-slate-200 dark:border-slate-700 animate-fade-in-up transition-colors">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-[calc(100vw-2rem)] sm:w-96 h-[500px] mb-4 flex flex-col overflow-hidden border border-slate-200 dark:border-slate-700 animate-fade-in-up transition-colors max-h-[80vh]">
           {/* Header */}
           <div className="bg-gradient-to-r from-primary-600 to-primary-800 p-4 flex justify-between items-center text-white">
             <div className="flex items-center space-x-2">

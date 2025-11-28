@@ -94,6 +94,11 @@ export const MOCK_ROOMS: Room[] = [
   }
 ];
 
+// Helper to set a default "Semester" range for mock data (Current Year)
+const CURRENT_YEAR = new Date().getFullYear();
+const SEM_START = `${CURRENT_YEAR}-01-01`;
+const SEM_END = `${CURRENT_YEAR}-12-31`;
+
 export const INITIAL_SCHEDULE: ScheduleItem[] = [
   {
     id: 's1',
@@ -104,6 +109,8 @@ export const INITIAL_SCHEDULE: ScheduleItem[] = [
     dayOfWeek: 'Monday',
     startTime: '09:00',
     endTime: '10:30',
+    startDate: SEM_START,
+    endDate: SEM_END,
     color: 'bg-blue-100 border-blue-300 text-blue-800'
   },
   {
@@ -115,6 +122,8 @@ export const INITIAL_SCHEDULE: ScheduleItem[] = [
     dayOfWeek: 'Monday',
     startTime: '11:00',
     endTime: '12:30',
+    startDate: SEM_START,
+    endDate: SEM_END,
     color: 'bg-green-100 border-green-300 text-green-800'
   },
   {
@@ -126,6 +135,8 @@ export const INITIAL_SCHEDULE: ScheduleItem[] = [
     dayOfWeek: 'Tuesday',
     startTime: '14:00',
     endTime: '16:00',
+    startDate: SEM_START,
+    endDate: SEM_END,
     color: 'bg-purple-100 border-purple-300 text-purple-800'
   },
   {
@@ -137,6 +148,8 @@ export const INITIAL_SCHEDULE: ScheduleItem[] = [
     dayOfWeek: 'Wednesday',
     startTime: '09:00',
     endTime: '11:00',
+    startDate: SEM_START,
+    endDate: SEM_END,
     color: 'bg-yellow-100 border-yellow-300 text-yellow-800'
   },
   {
@@ -148,6 +161,8 @@ export const INITIAL_SCHEDULE: ScheduleItem[] = [
     dayOfWeek: 'Tuesday',
     startTime: '10:00',
     endTime: '12:00',
+    startDate: SEM_START,
+    endDate: SEM_END,
     color: 'bg-red-100 border-red-300 text-red-800'
   },
   {
@@ -159,6 +174,8 @@ export const INITIAL_SCHEDULE: ScheduleItem[] = [
     dayOfWeek: 'Thursday',
     startTime: '13:00',
     endTime: '14:30',
+    startDate: SEM_START,
+    endDate: SEM_END,
     color: 'bg-indigo-100 border-indigo-300 text-indigo-800'
   },
   {
@@ -170,6 +187,8 @@ export const INITIAL_SCHEDULE: ScheduleItem[] = [
     dayOfWeek: 'Friday',
     startTime: '09:00',
     endTime: '12:00',
+    startDate: SEM_START,
+    endDate: SEM_END,
     color: 'bg-orange-100 border-orange-300 text-orange-800'
   },
   {
@@ -181,6 +200,8 @@ export const INITIAL_SCHEDULE: ScheduleItem[] = [
     dayOfWeek: 'Wednesday',
     startTime: '13:00',
     endTime: '15:00',
+    startDate: SEM_START,
+    endDate: SEM_END,
     color: 'bg-blue-100 border-blue-300 text-blue-800'
   },
   {
@@ -192,6 +213,8 @@ export const INITIAL_SCHEDULE: ScheduleItem[] = [
     dayOfWeek: 'Saturday',
     startTime: '08:00',
     endTime: '12:00',
+    startDate: SEM_START,
+    endDate: SEM_END,
     color: 'bg-teal-100 border-teal-300 text-teal-800'
   }
 ];

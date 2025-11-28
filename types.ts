@@ -1,10 +1,26 @@
+
 export enum UserRole {
   ADMIN = 'ADMIN',
   STUDENT = 'STUDENT',
   TEACHER = 'TEACHER'
 }
 
+export enum UserStatus {
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED'
+}
+
 export type ThemeColor = 'default' | 'teal' | 'violet';
+
+export interface UserProfile {
+  id: string;
+  email: string;
+  name: string;
+  role: UserRole;
+  status: UserStatus;
+  avatar?: string;
+}
 
 export interface Room {
   id: string;
@@ -24,6 +40,8 @@ export interface ScheduleItem {
   dayOfWeek: string;
   startTime: string;
   endTime: string;
+  startDate: string; // YYYY-MM-DD
+  endDate: string;   // YYYY-MM-DD
   color: string;
 }
 
