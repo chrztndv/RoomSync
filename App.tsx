@@ -173,7 +173,7 @@ const LoginSelection: React.FC = () => {
                   type="password" 
                   autoFocus
                   className={`w-full border rounded-lg px-4 py-3 focus:ring-2 outline-none transition-colors bg-white dark:bg-slate-700 dark:text-white ${error ? 'border-red-300 focus:ring-red-200 dark:border-red-500' : 'border-slate-300 dark:border-slate-600 focus:ring-primary-500'}`}
-                  placeholder="Enter admin123"
+                  placeholder="Enter Admin Passkey"
                   value={password}
                   onChange={(e) => {
                     setPassword(e.target.value);
